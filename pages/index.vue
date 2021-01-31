@@ -21,7 +21,7 @@
 
         <div id="example-1" v-for="(item, index) in list_word" :key="item.index" class="d-inline m-2">
 
-          <div v-if="item.word" class="d-inline">
+          <div v-if="item.word" class="d-inline mb-5">
 
             <span class="btn btn btn-sm m-1" @click="mod_status(index)"
               v-bind:class="[item.status ? 'btn-primary' : 'btn-secondary delete-line-through']">{{ item.word }}</span>
