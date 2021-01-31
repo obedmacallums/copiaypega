@@ -30,7 +30,6 @@
 
 
       </div>
-      <img src="~/assets/img/download.png" />
     
     </div>
     
