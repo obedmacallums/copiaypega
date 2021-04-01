@@ -6,6 +6,36 @@
     <div class="container mt-4">
 
 
+    <div>
+  <b-navbar toggleable="lg" type="dark" variant="primary">
+    <b-navbar-brand href="#">Inicio</b-navbar-brand>
+
+    <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+    <b-collapse id="nav-collapse" is-nav>
+      <b-navbar-nav>
+        <b-nav-item href="#">Configuración</b-nav-item>
+        
+      </b-navbar-nav>
+
+      <!-- Right aligned nav items -->
+      <b-navbar-nav class="ml-auto">
+         <b-nav-item-dropdown right>
+          <!-- Using 'button-content' slot -->
+          <template #button-content>
+            <span>obedmacallums@gmail.com</span>
+          </template>
+          <b-dropdown-item href="#">Perfil de usuario</b-dropdown-item>
+          <b-dropdown-item href="#">Cerrar sesión</b-dropdown-item>
+        </b-nav-item-dropdown>
+      </b-navbar-nav>
+    </b-collapse>
+  </b-navbar>
+</div>
+<br>
+
+
+
       <button class="btn btn-outline-primary btn-sm mb-4" @click="clean">Borrar</button>
       <br>
       <textarea class="form-control alert-primary" v-model="message_in" id="input" rows="8"></textarea>
@@ -48,6 +78,14 @@ export default {
 
     }
   },
+
+  mounted () {
+    this.$nextTick(() => {
+      this.$nuxt.$loading.start()
+      setTimeout(() => this.$nuxt.$loading.finish(), 200)
+    })
+  },
+
 
   watch: {
 
