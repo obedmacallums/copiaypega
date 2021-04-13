@@ -8,7 +8,9 @@
 
     <div>
   <b-navbar toggleable="lg" type="dark" variant="primary">
-    <b-navbar-brand href="#">Inicio</b-navbar-brand>
+    <NuxtLink to="/">
+    <b-navbar-brand>Inicio</b-navbar-brand>
+    </NuxtLink>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -67,8 +69,22 @@
 </template>
 <script>
 
+import {firebase, db, auth} from '@/plugins/firebase.js'
+import { mapMutations } from 'vuex'
+
 
 export default {
+ middleware({ store, redirect }) {
+      // If the user is not authenticated
+    let user = this.$store.state.todo.user
+    console.log("desde index")
+    console.log(user)
+    
+    if (!user) {
+        return redirect('/login') 
+    }
+    },
+
   data() {
     return {
       message_in: "",
@@ -83,7 +99,10 @@ export default {
     this.$nextTick(() => {
       this.$nuxt.$loading.start()
       setTimeout(() => this.$nuxt.$loading.finish(), 200)
-    })
+    },)
+
+    this.signIn()
+    console.log(this.$route.params)
   },
 
 
@@ -96,6 +115,17 @@ export default {
   },
 
   methods: {
+    async signIn(){
+    try{
+      var sign = await auth.signInAnonymously()
+      //console.log(sign)
+    }
+    catch (error){
+      console.log(error)
+    }
+    
+}
+,
     to_process() {
 
       var varstr = this.message_in;
@@ -110,6 +140,10 @@ export default {
       this.resultado()
 
     },
+
+    ...mapMutations({
+      toggle: 'todos/toggle'
+    }),
 
     resultado() {
       var resultado1 = this.list_word
