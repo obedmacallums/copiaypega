@@ -69,18 +69,12 @@
 </template>
 <script>
 
-import {firebase, db, auth} from '@/plugins/firebase.js'
-import { mapMutations } from 'vuex'
-
 
 export default {
  middleware({ store, redirect }) {
       // If the user is not authenticated
-    let user = this.$store.state.todo.user
-    console.log("desde index")
-    console.log(user)
-    
-    if (!user) {
+       
+    if (!store.state.user) {
         return redirect('/login') 
     }
     },
@@ -101,8 +95,8 @@ export default {
       setTimeout(() => this.$nuxt.$loading.finish(), 200)
     },)
 
-    this.signIn()
-    console.log(this.$route.params)
+  
+
   },
 
 
@@ -115,17 +109,8 @@ export default {
   },
 
   methods: {
-    async signIn(){
-    try{
-      var sign = await auth.signInAnonymously()
-      //console.log(sign)
-    }
-    catch (error){
-      console.log(error)
-    }
-    
-}
-,
+
+
     to_process() {
 
       var varstr = this.message_in;
@@ -140,11 +125,6 @@ export default {
       this.resultado()
 
     },
-
-    ...mapMutations({
-      toggle: 'todos/toggle'
-    }),
-
     resultado() {
       var resultado1 = this.list_word
       var resultado2 = resultado1.map(x => {
