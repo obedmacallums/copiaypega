@@ -4,9 +4,10 @@
         login page
         
         <button @click="print">print hola</button>
-       <button @click="signano">signano</button>
-       userid: {{userid}}
-       error: {{usererror}}
+       <button @click="loginHandler()">sign in google</button>
+       <button @click="signout">signout</button>
+       user: {{user}}
+       
     </h1>
     <br>
     <NuxtLink to="/">
@@ -20,8 +21,8 @@ import { mapActions } from 'vuex'
 
 export default {
     computed: {
-    userid () {
-      return this.$store.state.authfirebase.user1
+    user () {
+      return this.$store.state.authfirebase.user
     },
     usererror () {
       return this.$store.state.authfirebase.error
@@ -32,8 +33,12 @@ export default {
 
       ...mapActions({
       print: 'authfirebase/print',
-      signano: 'authfirebase/signano'
+      signingoogle: 'authfirebase/signingoogle',
+      signout: 'authfirebase/signout'
     }),
+    loginHandler(){
+      this.signingoogle({ router: this.$router });
+    }
      
 
       }

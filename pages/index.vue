@@ -75,8 +75,8 @@
 export default {
  middleware({ store, redirect }) {
       // If the user is not authenticated
-     console.log(store.state.authfirebase)  
-    if (!store.state.authfirebase.user1) {
+     console.log(store.state.authfirebase.user)  
+    if (!store.state.authfirebase.user.uid) {
         return redirect('/login') 
     }
     },
