@@ -36,7 +36,9 @@
 </div>
 <br>
 
-
+ <NuxtLink to="/login">
+    <b-navbar-brand>login</b-navbar-brand>
+    </NuxtLink>
 
       <button class="btn btn-outline-primary btn-sm mb-4" @click="clean">Borrar</button>
       <br>
@@ -73,8 +75,8 @@
 export default {
  middleware({ store, redirect }) {
       // If the user is not authenticated
-       
-    if (!store.state.user) {
+     console.log(store.state.authfirebase)  
+    if (!store.state.authfirebase.user1) {
         return redirect('/login') 
     }
     },
