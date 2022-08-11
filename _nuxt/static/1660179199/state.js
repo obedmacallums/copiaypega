@@ -1,0 +1,1 @@
+window.__NUXT__=(function(a){return {staticAssetsBase:"\u002Fcopiaypega\u002F_nuxt\u002Fstatic\u002F1660179199",layout:"default",error:a,serverRendered:true,routePath:"\u002F",config:{_app:{basePath:"\u002Fcopiaypega\u002F",assetsPath:"\u002Fcopiaypega\u002F_nuxt\u002F",cdnURL:a}}}}(null));
